@@ -21,6 +21,31 @@ test('add() default', function * (t) {
   t.deepEqual(actual, expected);
 });
 
+test('add() default, when package already is in devDependencies', function * (t) {
+  const getPackage = function (arg) {
+    t.is(arg, 'packageName');
+    return Promise.resolve({
+      name: 'packageName',
+      version: '1.2.3'
+    });
+  };
+
+  const {add} = inject(getPackage);
+
+  const actual = yield add(Object.freeze({
+    devDependencies: {
+      packageName: '^1.2.2'
+    }
+  }), 'packageName');
+  const expected = {
+    dependencies: {
+      packageName: '^1.2.3'
+    },
+    devDependencies: {}
+  };
+  t.deepEqual(actual, expected);
+});
+
 test('add() @latest', function * (t) {
   const getPackage = function (arg) {
     t.is(arg, 'packageName@latest');
@@ -120,6 +145,30 @@ test('add() github link', function * (t) {
   t.deepEqual(actual, expected);
 });
 
+test('add() github link when package already is in devDependencies', function * (t) {
+  const getPackage = function (arg) {
+    t.is(arg, 'user/repo#tag');
+    return Promise.resolve({
+      name: 'packageName'
+    });
+  };
+
+  const {add} = inject(getPackage);
+
+  const actual = yield add(Object.freeze({
+    devDependencies: {
+      packageName: '1.2.3'
+    }
+  }), 'user/repo#tag');
+  const expected = {
+    dependencies: {
+      packageName: 'github:user/repo#tag'
+    },
+    devDependencies: {}
+  };
+  t.deepEqual(actual, expected);
+});
+
 test('addDev() default', function * (t) {
   const getPackage = function (arg) {
     t.is(arg, 'packageName');
@@ -138,4 +187,22 @@ test('addDev() default', function * (t) {
     }
   };
   t.deepEqual(actual, expected);
+});
+
+test('addDev() when package already is in dependencies', function * (t) {
+  t.plan(1);
+  const getPackage = () => {
+    throw new Error('should not be called');
+  };
+
+  const {addDev} = inject(getPackage);
+
+  addDev(Object.freeze({
+    dependencies: {
+      packageName: '*'
+    }
+  }), 'packageName')
+    .catch(err => {
+      t.is(err.message, '"packageName" is already in dependencies');
+    });
 });
