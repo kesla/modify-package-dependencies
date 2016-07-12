@@ -80,7 +80,7 @@ test('add() @*', function * (t) {
   const actual = yield add(Object.freeze({}), 'packageName@*');
   const expected = {
     dependencies: {
-      packageName: '*'
+      packageName: '^1.2.3'
     }
   };
   t.deepEqual(actual, expected);
@@ -100,7 +100,7 @@ test('add() @exact', function * (t) {
   const actual = yield add(Object.freeze({}), 'packageName@1.2.1');
   const expected = {
     dependencies: {
-      packageName: '1.2.1'
+      packageName: '^1.2.1'
     }
   };
   t.deepEqual(actual, expected);
@@ -120,7 +120,7 @@ test('add() @~version', function * (t) {
   const actual = yield add(Object.freeze({}), 'packageName@~1.2.1');
   const expected = {
     dependencies: {
-      packageName: '~1.2.1'
+      packageName: '^1.2.3'
     }
   };
   t.deepEqual(actual, expected);
