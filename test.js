@@ -206,3 +206,31 @@ test('addDev() when package already is in dependencies', function * (t) {
       t.is(err.message, '"packageName" is already in dependencies');
     });
 });
+
+test('remove() when package is in dependencies', function * (t) {
+  const getPackage = () => {
+    throw new Error('should not be called');
+  };
+
+  const {remove} = inject(getPackage);
+  const packageJson = Object.freeze({dependencies: {packageName: '1.2.3'}});
+  const actual = remove(packageJson, 'packageName');
+  const expected = {
+    dependencies: {}
+  };
+  t.deepEqual(actual, expected);
+});
+
+test('remove() when package is in devDependencies', function * (t) {
+  const getPackage = () => {
+    throw new Error('should not be called');
+  };
+
+  const {remove} = inject(getPackage);
+  const packageJson = Object.freeze({devDependencies: {packageName: '1.2.3'}});
+  const actual = remove(packageJson, 'packageName');
+  const expected = {
+    devDependencies: {}
+  };
+  t.deepEqual(actual, expected);
+});
