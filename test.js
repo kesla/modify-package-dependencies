@@ -1,7 +1,7 @@
 import test from 'tapava';
 import {inject} from './lib';
 
-test('add() @^version', function * (t) {
+test('add() default', function * (t) {
   const getPackage = function (arg) {
     t.is(arg, 'packageName');
     return Promise.resolve({
@@ -115,6 +115,26 @@ test('add() github link', function * (t) {
   const expected = {
     dependencies: {
       packageName: 'github:user/repo#tag'
+    }
+  };
+  t.deepEqual(actual, expected);
+});
+
+test('addDev() default', function * (t) {
+  const getPackage = function (arg) {
+    t.is(arg, 'packageName');
+    return Promise.resolve({
+      name: 'packageName',
+      version: '1.2.3'
+    });
+  };
+
+  const {addDev} = inject(getPackage);
+
+  const actual = yield addDev(Object.freeze({}), 'packageName');
+  const expected = {
+    devDependencies: {
+      packageName: '^1.2.3'
     }
   };
   t.deepEqual(actual, expected);
