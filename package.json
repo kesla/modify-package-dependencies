@@ -1,7 +1,7 @@
 {
-  "name": "add-package-dependency",
+  "name": "modify-package-dependencies",
   "version": "0.0.0",
-  "description": "Add a dependency to a package.json-file - what \"npm install --save\" or \"npm install --save-dev\" does (without the actual installing)",
+  "description": "Modify dependencies to a package.json-file - simlar to what \"npm install --save[-dev]\" or \"npm uninstall --save[-dev]\" does (without the actual [un]installing)",
   "main": "dist/index.js",
   "scripts": {
     "test": "babel-tape-runner test.js && semistandard | snazzy",
