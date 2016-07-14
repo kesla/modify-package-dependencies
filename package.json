@@ -31,10 +31,12 @@
   "dependencies": {
     "get-pkg-json": "^1.0.0",
     "immutable-object-methods": "^1.2.1",
+    "minimist": "^1.2.0",
     "npm-package-arg": "^4.2.0"
   },
   "xo": {
     "esnext": true,
     "space": true
-  }
+  },
+  "bin": "bin/cli.js"
 }
