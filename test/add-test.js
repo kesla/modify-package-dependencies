@@ -12,7 +12,7 @@ test('add() default', function * (t) {
 
   const {add} = inject(getPackage);
 
-  const actual = yield add(Object.freeze({}), 'packageName');
+  const actual = yield add(Object.freeze({}), ['packageName']);
   const expected = {
     dependencies: {
       packageName: '^1.2.3'
@@ -36,7 +36,7 @@ test('add() default, when package already is in devDependencies', function * (t)
     devDependencies: {
       packageName: '^1.2.2'
     }
-  }), 'packageName');
+  }), ['packageName']);
   const expected = {
     dependencies: {
       packageName: '^1.2.3'
@@ -57,7 +57,7 @@ test('add() @latest', function * (t) {
 
   const {add} = inject(getPackage);
 
-  const actual = yield add(Object.freeze({}), 'packageName@latest');
+  const actual = yield add(Object.freeze({}), ['packageName@latest']);
   const expected = {
     dependencies: {
       packageName: '^1.2.3'
@@ -77,7 +77,7 @@ test('add() @*', function * (t) {
 
   const {add} = inject(getPackage);
 
-  const actual = yield add(Object.freeze({}), 'packageName@*');
+  const actual = yield add(Object.freeze({}), ['packageName@*']);
   const expected = {
     dependencies: {
       packageName: '^1.2.3'
@@ -97,7 +97,7 @@ test('add() @exact', function * (t) {
 
   const {add} = inject(getPackage);
 
-  const actual = yield add(Object.freeze({}), 'packageName@1.2.1');
+  const actual = yield add(Object.freeze({}), ['packageName@1.2.1']);
   const expected = {
     dependencies: {
       packageName: '^1.2.1'
@@ -117,7 +117,7 @@ test('add() @~version', function * (t) {
 
   const {add} = inject(getPackage);
 
-  const actual = yield add(Object.freeze({}), 'packageName@~1.2.1');
+  const actual = yield add(Object.freeze({}), ['packageName@~1.2.1']);
   const expected = {
     dependencies: {
       packageName: '^1.2.3'
@@ -136,7 +136,7 @@ test('add() github link', function * (t) {
 
   const {add} = inject(getPackage);
 
-  const actual = yield add(Object.freeze({}), 'user/repo#tag');
+  const actual = yield add(Object.freeze({}), ['user/repo#tag']);
   const expected = {
     dependencies: {
       packageName: 'github:user/repo#tag'
@@ -159,7 +159,7 @@ test('add() github link when package already is in devDependencies', function * 
     devDependencies: {
       packageName: '1.2.3'
     }
-  }), 'user/repo#tag');
+  }), ['user/repo#tag']);
   const expected = {
     dependencies: {
       packageName: 'github:user/repo#tag'

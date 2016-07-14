@@ -12,7 +12,7 @@ test('addDev() default', function * (t) {
 
   const {addDev} = inject(getPackage);
 
-  const actual = yield addDev(Object.freeze({}), 'packageName');
+  const actual = yield addDev(Object.freeze({}), ['packageName']);
   const expected = {
     devDependencies: {
       packageName: '^1.2.3'
@@ -22,9 +22,12 @@ test('addDev() default', function * (t) {
 });
 
 test('addDev() when package already is in dependencies', function * (t) {
-  t.plan(1);
-  const getPackage = () => {
-    throw new Error('should not be called');
+  t.plan(2);
+  const getPackage = arg => {
+    t.is(arg, 'packageName');
+    return Promise.resolve({
+      name: 'packageName'
+    });
   };
 
   const {addDev} = inject(getPackage);
@@ -33,7 +36,7 @@ test('addDev() when package already is in dependencies', function * (t) {
     dependencies: {
       packageName: '*'
     }
-  }), 'packageName')
+  }), ['packageName'])
     .catch(err => {
       t.is(err.message, '"packageName" is already in dependencies');
     });
