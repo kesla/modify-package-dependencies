@@ -197,7 +197,7 @@ test('addDev() when package already is in dependencies', function * (t) {
 
   const {addDev} = inject(getPackage);
 
-  addDev(Object.freeze({
+  yield addDev(Object.freeze({
     dependencies: {
       packageName: '*'
     }
@@ -207,7 +207,7 @@ test('addDev() when package already is in dependencies', function * (t) {
     });
 });
 
-test('remove() when package is in dependencies', function * (t) {
+test('remove() when package is in dependencies', t => {
   const getPackage = () => {
     throw new Error('should not be called');
   };
@@ -221,7 +221,7 @@ test('remove() when package is in dependencies', function * (t) {
   t.deepEqual(actual, expected);
 });
 
-test('remove() when package is in devDependencies', function * (t) {
+test('remove() when package is in devDependencies', t => {
   const getPackage = () => {
     throw new Error('should not be called');
   };

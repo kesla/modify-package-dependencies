@@ -4,7 +4,7 @@
   "description": "Modify dependencies to a package.json-file - simlar to what \"npm install --save[-dev]\" or \"npm uninstall --save[-dev]\" does (without the actual [un]installing)",
   "main": "dist/index.js",
   "scripts": {
-    "test": "babel-tape-runner test.js && semistandard | snazzy",
+    "test": "xo && babel-tape-runner test.js",
     "build": "rm -rf dist && mkdir -p dist && babel lib --out-dir dist",
     "watch": "rm -rf dist && mkdir -p dist && babel -w lib --out-dir dist",
     "prepublish": "npm run build"
@@ -24,13 +24,17 @@
     "babel-core": "^6.10.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-tape-runner": "^2.0.1",
-    "semistandard": "^8.0.0",
-    "snazzy": "^4.0.0",
-    "tapava": "^2.2.0"
+    "eslint": "^2.13.1",
+    "tapava": "^2.2.0",
+    "xo": "^0.16.0"
   },
   "dependencies": {
     "get-pkg-json": "^1.0.0",
     "immutable-object-methods": "^1.2.1",
     "npm-package-arg": "^4.2.0"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true
   }
 }
