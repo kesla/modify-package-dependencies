@@ -34,6 +34,8 @@
     "lodash.find": "^4.4.0",
     "minimist": "^1.2.0",
     "npm-package-arg": "^4.2.0",
+    "sort-object": "^3.0.2",
+    "then-fs": "^2.0.0",
     "then-read-json": "^1.0.1"
   },
   "xo": {
