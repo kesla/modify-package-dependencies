@@ -33,7 +33,8 @@
     "immutable-object-methods": "^1.2.1",
     "lodash.find": "^4.4.0",
     "minimist": "^1.2.0",
-    "npm-package-arg": "^4.2.0"
+    "npm-package-arg": "^4.2.0",
+    "then-read-json": "^1.0.1"
   },
   "xo": {
     "esnext": true,
