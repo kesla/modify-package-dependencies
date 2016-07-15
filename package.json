@@ -1,6 +1,6 @@
 {
   "name": "modify-package-dependencies",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Modify dependencies to a package.json-file - simlar to what \"npm install --save[-dev]\" or \"npm uninstall --save[-dev]\" does (without the actual [un]installing)",
   "main": "dist/index.js",
   "scripts": {
