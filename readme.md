@@ -1,6 +1,6 @@
 # modify-package-dependencies
 
-> Modify dependencies to a package.json-file - simlar to what \&#34;npm install --save[-dev]\&#34; or \&#34;npm uninstall --save[-dev]\&#34; does (without the actual [un]installing)
+> Modify dependencies to a package.json-object - simlar to what `npm install --save[-dev]`; or `npm uninstall --save[-dev]` does (without the actual [un]installing)
 
 ## Table of Contents
 
